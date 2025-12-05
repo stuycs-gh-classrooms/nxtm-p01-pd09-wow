@@ -1,6 +1,6 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/QTULg0OX)
 # NeXtCS Project 01
-### thinker0: FRIST LSAT
-### thinker1: FRIST LSAT
+### thinker0: Aarushi Jain
 ---
 
 ### Overview
@@ -21,17 +21,27 @@ The first phase will be to work on this document.
 
 ## Phase 0: Selection, Analysis & Plan
 
-#### Selected Project: CHOOSE WISELY
+#### Selected Project: Atari Breakout
 
 ### Necessary Features
 What are the core features that your program should have? These should be things that __must__ be implemented in order to make the program useable/playable, not extra features that could be added to make the program more interesting/fun.
-
-YOUR ANSWERS HERE
+- Ball class for the ball that bounces
+- Paddle Class
+- 2D array for the grid that needs to be destroyed
+- driver
+-   **while** game goes on, ball should keep moving forever
+-     **boolean** if paused then go to the pause screen OR showcase pause
+- reset the game
+- if all boxes are destroyed add option to keep playing and reset boxes-> maybe on the pause screen
+- 
+- 
 
 ### Extra Features
 What are some features that are not essential to the program, but you would like to see (provided you have time after completing the necessary features. Theses can be customizations that are not part of the core requirements.
 
-YOUR ANSWERS HERE
+- Color of the breakout
+- fun paddle?
+- fun ball?
 
 ### Array Usage
 How will you be using arrays in this project?
@@ -40,31 +50,47 @@ How will you be using arrays in this project?
 - YOUR ANSER HERE
 
 2D Array:
-- YOUR ANSWER HERE
+- The array of boxes that are being destroyed.
 
 
 ### Controls
 How will your program be controlled? List all keyboard commands and mouse interactions.
 
 Keyboard Commands:
-- LIST OF COMMANDS HERE
+- Left and Right arrows -> move paddle around
+- space key -> pause game
 
 Mouse Control:
 - Mouse movement:
+    - mouse moves left and right - paddle follows mouse movement
 - Mouse pressed:
+    - nothing right now- maybe pause the game? 
 
 
 ### Classes
 What classes will you be creating for this project? Include the instance variables and methods that you believe you will need. You will be required to create at least 2 different classes. If you are going to use classes similar to those we've made for previous assignments, you will have to add new features to them.
 
-CLASS NAME0
+CLASS Ball
 - Instance variables:
-  - LIST INSTANCE VARS HERE
+  - (x, y) position
+  - xspeed, yspeed -> speed
+  - d -> diameter
 - METHODS
-  - LIST METHODS HERE
+  - display()
+  - move()
+  - collisions()
+      - collisions with the boxes
+      - collision with the sides of the screen
+      - collision with paddle
+  - 
 
-CLASS NAME1
+CLASS Paddle
 - Instance variables:
-  - LIST INSTANCE VARS HERE
+  - x, y -> Position
+  - pxspeed -> speed movement
+  - size
+  - 
 - METHODS
-  - LIST METHODS HERE
+  - display()
+  - move()
+  - check if touching ball? -> could be decided in collision() method of ball. 
