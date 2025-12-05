@@ -31,6 +31,8 @@ What are the core features that your program should have? These should be things
 - driver
 -   **while** game goes on, ball should keep moving forever
 -     **boolean** if paused then go to the pause screen OR showcase pause
+- reset the game
+- if all boxes are destroyed add option to keep playing and reset boxes-> maybe on the pause screen
 - 
 - 
 
@@ -77,6 +79,9 @@ CLASS Ball
   - display()
   - move()
   - collisions()
+      - collisions with the boxes
+      - collision with the sides of the screen
+      - collision with paddle
   - 
 
 CLASS Paddle
