@@ -1,6 +1,5 @@
-class Ball {
+class Ball{
   //fields
-  int x, y;
   int xspeed, yspeed;
   int size;
   color c;
@@ -16,7 +15,7 @@ class Ball {
 
   //DISPLAY
   void display() {
-    fill(c);
+    fill(#CE1111);
     circle(center.x, center.y, size);
   }
 
