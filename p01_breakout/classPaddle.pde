@@ -1,40 +1,38 @@
 class Paddle {
-  int height;
-  int width;
+  int pheight;
+  int pwidth;
   PVector center;
   color c;
-  int xspeed, yspeed;
   
   //constructor
-  Paddle(PVector p, int h, int w){
-    height = h;
-    width = w;
+    Paddle(PVector p, int ph, int pw){
+    pheight = ph;
+    pwidth = pw;
     center = new PVector(p.x, p.y);
   }
   
   //methods 
-  void display(){
+  void display() { 
     fill(#3F11CE);  
-    rectMode(CENTER);
-    rect(center.x, center.y, width, height);
-  }
-  
-  void move() {
-      if (center.x > width || center.x < width ){
-      xspeed*= -1;
-    }
-    if (center.y > height ||  center.y < height) {
-      yspeed*= -1;
-    }
-    center.x+= xspeed;
-    center.y+= yspeed;
-    
+   rectMode(CENTER);
+    rect(center.x, center.y, pwidth, pheight);
   }
   
   
+   void keyPressed(){
+  if (keyCode == RIGHT){
+    paddle.center.x += 10;
+  }
+    if (keyCode == LEFT){
+    paddle.center.x -= 10;
+  }
+  if (paddle.center.x > width) {
+       
+      }
+} //keypressed
   
-}
 
+}//class
 
 //// if the ball hits the middle of paddle it goes straight up. 
 //if it hits more to the edge, it goes on an angle/diagonally.
