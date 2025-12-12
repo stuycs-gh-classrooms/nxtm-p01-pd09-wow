@@ -9,6 +9,9 @@ class Ball{
   Ball(PVector ball, int s) {
     size = s;
     center = new PVector(ball.x, ball.y);
+    
+    xspeed = 2;
+    yspeed = 2;
   }
 
   //methods
@@ -21,17 +24,18 @@ class Ball{
 
   //MOVE
   void move() {
-    if (center.x > width - size/2 ||
-      center.x < size/2) {
-      xspeed*= -1;
-    }
-    if (center.y > height - size/2 ||
-      center.y < size/2) {
-      yspeed*= -1;
-    }
     center.x+= xspeed;
     center.y+= yspeed;
-  }
+    
+    if (center.x >= width - size/2 ||
+      center.x <= size/2) {
+      xspeed*= -1;
+    }
+    if (center.y >= height - size/2 ||
+      center.y <= size/2) {
+      yspeed*= -1;
+    }
+  }//move
 
 
   //COLLISIONS

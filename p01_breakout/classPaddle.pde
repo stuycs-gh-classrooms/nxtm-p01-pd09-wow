@@ -3,6 +3,7 @@ class Paddle {
   int pwidth;
   PVector center;
   color c;
+  int xspeed;
   
   //constructor
     Paddle(PVector p, int ph, int pw){
@@ -19,17 +20,7 @@ class Paddle {
   }
   
   
-   void keyPressed(){
-  if (keyCode == RIGHT){
-    paddle.center.x += 10;
-  }
-    if (keyCode == LEFT){
-    paddle.center.x -= 10;
-  }
-  if (paddle.center.x > width) {
-       
-      }
-} //keypressed
+ 
   
 
 }//class
