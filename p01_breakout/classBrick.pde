@@ -1,36 +1,17 @@
 class Brick {
- 
-  Brick[][] brick;
- int size;
-  
-  /***
-  int width;
-  int height;
-  boolean alive;
-  color c;
-  PVector bCenter;
-  
-  //constructor
-  Brick(PVector b, int h, int w){
-    height = h;
-    width = w;
-    bCenter = new PVector(b.x, b.y);
+  int h, w;
+  boolean alive = true;
+  PVector center;
+
+  Brick(PVector b, int h_, int w_) {
+    h = h_;
+    w = w_;
+    center = b.copy();
   }
 
-  //methods
-  
-  //DISPLAY
-  void display(){
-    c = color(0, 255, 0);
-   fill(c);
-   rect(bCenter.x, bCenter.y, width, height);
+  void display() {
+    fill(#1ACB00);
+    rectMode(CENTER);
+    rect(center.x, center.y, w, h);
   }
-  
-  //DID THE BRICK DIE?!
-  void hit(boolean alive){
-    
-  }
-  
-  
-  ***/
 }

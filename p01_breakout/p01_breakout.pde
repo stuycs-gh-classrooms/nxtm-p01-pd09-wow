@@ -1,47 +1,116 @@
 //class objects
 Ball projectile;
 Paddle paddle;
-boolean moving;
+Brick[][] bricks;
 
 //variables
+boolean moving;
+int rows = 5;
+int cols = 8;
+int lives = 3;
+int brickW = 55;
+int brickH = 20;
+
 
 void setup() {
   size(500, 500);
-  newPaddle(30, 70);
-  moving = true;
-  newProjectile(30);
+  resetGame();
 }
 
 void draw() {
   background(#46CCFF);
-  projectile.display();
-  paddle.display();
-  // projectile.move();
+  fill(0);
 
+  //display
+  textSize(14);
+  text("Lives: " + lives, 10, 20);
+  text("SPACE = pause/play | R = reset", 10, 40);
+
+  // display objects
+  paddle.display();
+  projectile.display();
+
+  for (int r = 0; r < rows; r++) {
+    for (int c = 0; c < cols; c++) {
+      if (bricks[r][c].alive) {
+        bricks[r][c].display();
+      }
+    }
+  }
+
+  // movement + collisions
   if (moving) {
     projectile.move();
+    projectile.paddleCollision(paddle);
+    projectile.brickCollision(bricks);
+  }
+
+  // lose a life
+  if (projectile.center.y > height) {
+    lives--;
+    moving = false;
+    newProjectile(30);
+
+    if (lives <= 0) {
+      resetGame();
+    }
+  }
+
+  // to win
+  if (allBricksGone()) {
+    rows++;
+    buildBricks();
+    newProjectile(30);
+    moving = false;
   }
 }//draw
 
 
-//MAKE THE PROJECTILE
+//reset game 
+void resetGame() {
+  lives = 3;
+  newPaddle(70, 15);
+  newProjectile(30);
+  rows = 5;
+  buildBricks();
+  moving = false;
+}
+
+//i killed them all
+boolean allBricksGone() {
+  for (int r = 0; r < rows; r++) {
+    for (int c = 0; c < cols; c++) {
+      if (bricks[r][c].alive) return false;
+    }
+  }
+  return true;
+}
+
+
+//MAKE THE ELEMENTS
 
 void newProjectile(int psize) {
-  float x = width/2;
-  float y = 250;
-  projectile = new Ball(new PVector (x, y), psize);
-  projectile.xspeed = 0;
-  projectile.yspeed = 0;
+  projectile = new Ball(new PVector(width/2, height-60), psize);
 }
-
 
 void newPaddle(int w, int h) {
-  float x = width/2;
-  float y = height - h + 20;
-  paddle = new Paddle(new PVector (x, y), w, h);
+  paddle = new Paddle(new PVector(width/2, height-30), h, w);
 }
 
+void buildBricks() {
+  bricks = new Brick[rows][cols];
+  int startX = 40;
+  int startY = 60;
 
+  for (int r = 0; r < rows; r++) {
+    for (int c = 0; c < cols; c++) {
+      PVector pos = new PVector(startX + c*(brickW+5), startY + r*(brickH+5));
+      bricks[r][c] = new Brick(pos, brickH, brickW);
+    }
+  }
+}
+
+//user input
 void keyPressed() {
   if (keyCode == RIGHT) {
     paddle.center.x += 10;
@@ -54,10 +123,7 @@ void keyPressed() {
     moving = !moving;
   }
 
-  if (key == 'r') {
-    newProjectile(30);
+  if (key == 'r' || key == 'R') {
+    resetGame();
   }
 } //keypressed
-
-
-// USER HANDLING
